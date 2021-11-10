@@ -26,10 +26,16 @@ function index({ isAuthenticated, name, logout, children }) {
             className="justify-content-end"
           >
             <Nav>
+              <Link href="/blog" passHref>
+                <Nav.Link>Blog</Nav.Link>
+              </Link>
               {isAuthenticated && (
                 <NavDropdown title={TAG} id="collasible-nav-dropdown">
                   <Link href="/profile" passHref>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </Link>
+                  <Link href="/blog/create" passHref>
+                    <NavDropdown.Item>Create Post</NavDropdown.Item>
                   </Link>
                   <NavDropdown.Divider />
                   <NavDropdown.Item className="text-dark" onClick={logout}>
