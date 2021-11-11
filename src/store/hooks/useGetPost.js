@@ -13,7 +13,7 @@ export const useGetPost = () => {
     if (cache[slug]) {
       const data = cache[slug];
       setPost(data);
-    } else {
+    } else if (slug) {
       axios
         .get(POST_DETAIL_API(slug), getToken())
         .then((res) => {

@@ -2,8 +2,11 @@
     text-align: center;
 }
 
-.button{
+.link{
     text-decoration: none;
     color: inherit;
+}
+
+.button{
     margin-left:.3em; 
 }

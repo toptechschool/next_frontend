@@ -11,14 +11,18 @@ export default function Pagination({ count, current }) {
   for (let i = 1; i <= totalPages; i++) {
     items.push(
       <Link
-        className={styles.button}
         href={{
           pathname: "/blog", //TODO: make /blog dynamic so that it can be used in any pagination
           query: { page: i },
         }}
+        className={styles.link}
         key={i}
       >
-        <Button key={i} variant={current === i ? "primary" : "outline-primary"}>
+        <Button
+          className={styles.button}
+          key={i}
+          variant={current === i ? "primary" : "outline-primary"}
+        >
           {i}
         </Button>
       </Link>
