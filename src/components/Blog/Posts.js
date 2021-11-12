@@ -3,6 +3,7 @@ import { Row, Col, Card, Badge } from "react-bootstrap";
 import Link from "next/link";
 import Spinner from "../Common/Spinner";
 import styles from "./Posts.module.css";
+import { BiTime } from "react-icons/bi";
 
 const PostListCard = ({ post }) => {
   const { title, tags, author, date_updated, read_time, slug } = post;
@@ -12,18 +13,17 @@ const PostListCard = ({ post }) => {
       <Card>
         <Card.Body>
           <Card.Title>
-            <Link
-              className={styles.title}
-              href={`/blog/detail/${encodeURIComponent(slug)}`}
-            >
-              {title}
+            <Link href={`/blog/detail/${encodeURIComponent(slug)}`}>
+              <a className={styles.title}>{title}</a>
             </Link>{" "}
           </Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">{`By ${author.name}`}</Card.Subtitle>
-          <Card.Text className={styles.detail}>
-            <small>Last Updated: {date_updated}</small> <br />
-            <small>Read Time: {read_time}</small>
-          </Card.Text>
+          <Card.Subtitle className="d-flex justify-content-between">
+            {`By ${author.name}`}
+            <small>
+              <BiTime />
+              {read_time}
+            </small>
+          </Card.Subtitle>
         </Card.Body>
         <Card.Footer>
           {tags.map((tag, idx) => (

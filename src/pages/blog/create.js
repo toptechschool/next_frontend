@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import MarkdownIt from "markdown-it";
-import MdEditor from "react-markdown-editor-lite";
+import MdEditor, { Plugins } from "react-markdown-editor-lite";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import "react-markdown-editor-lite/lib/index.css";
 import withNavbarContainer from "../../components/Navbar";
 import { useCreatePost } from "../../store/hooks/useCreatePost";
+
+MdEditor.use(Plugins.TabInsert, { tabMapValue: 4 });
 
 function create() {
   const mdParser = new MarkdownIt();
