@@ -3,13 +3,19 @@ import { Row, Card, Col, Image } from "react-bootstrap";
 import Spinner from "../Common/Spinner";
 import ReactMarkdown from "react-markdown";
 import { CodeHighlighter } from "./CodeHighlighter";
+import gfm from "remark-gfm";
+import remarkHtml from "remark-html";
 
 const PostDetailCard = ({ post }) => {
   return (
     <Card>
       <Card.Header>{post.title}</Card.Header>
       <Card.Body>
-        <ReactMarkdown components={CodeHighlighter} children={post.content} />
+        <ReactMarkdown
+          components={CodeHighlighter}
+          children={post.content}
+          remarkPlugins={[remarkHtml, gfm]}
+        />
       </Card.Body>
     </Card>
   );

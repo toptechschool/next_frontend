@@ -1,17 +1,18 @@
 import React from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism"; // darcula , okaidia
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism"; // twilight , okaidia
 
 export const CodeHighlighter = {
   code({ node, inline, className, children, ...props }) {
     const match = /language-(\w+)/.exec(className || "");
     return !inline && match ? (
       <SyntaxHighlighter
-        style={darcula}
+        style={atomDark}
         language={match[1]}
-        PreTag="div"
         children={children[0]}
         {...props}
+        showLineNumbers
+        wrapLines={true}
       />
     ) : (
       <code className={className} {...props}>
