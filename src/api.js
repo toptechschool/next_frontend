@@ -39,3 +39,9 @@ export function getAllPosts(fields = []) {
     .sort((post1, post2) => (post1.date > post2.date ? "-1" : "1"));
   return posts;
 }
+
+export function getAllCategories() {
+  const posts = getAllPosts(["category"]);
+  const categories = posts.map((post) => post.category.toLowerCase());
+  return [...new Set(categories)];
+}
