@@ -1,13 +1,24 @@
 import React from "react";
 import { getAllPosts, getPostBySlug } from "../../api";
 import withNavbarContainer from "../../components/Navbar";
+import MDX from "@mdx-js/runtime";
+import CodeBlock from "../../components/Blog/CodeBlock";
 
-function Post({ post }) {
-  return <div>{post.title}</div>;
+function Post({ post: { title, content } }) {
+  const components = {
+    pre: (props) => <div {...props} />,
+    code: CodeBlock,
+  };
+  return (
+    <div>
+      <h1>{title}</h1>
+      <MDX components={components}>{content}</MDX>
+    </div>
+  );
 }
 
 export async function getStaticProps({ params }) {
-  const post = getPostBySlug(params.slug, ["title", "author"]);
+  const post = getPostBySlug(params.slug, ["title", "author", "content"]);
   return { props: { post } };
 }
 
