@@ -1,0 +1,20 @@
+.line {
+    display: flex;
+    align-items: center;
+    color: rebeccapurple;
+    text-transform: uppercase;
+    font-size: medium;
+}
+.line::before,
+.line::after {
+    flex: 1;
+    height: 3px;
+    content: "";
+    background-color: currentColor;
+}
+.line::before {
+    margin-right: 10px;
+}
+.line::after {
+    margin-left: 10px;
+}

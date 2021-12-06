@@ -14,10 +14,7 @@ const CodeBlock = ({ children, className }) => {
       theme={theme}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre
-          className={className}
-          style={{ ...style, padding: "0.5em", overflow: "scroll" }}
-        >
+        <pre className={className} style={{ ...style, padding: "0.5em" }}>
           {tokens.map((line, i) => (
             <div
               style={{ display: "table-row" }}

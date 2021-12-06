@@ -1,19 +1,20 @@
 import React from "react";
 import { getAllPosts, getPostBySlug } from "../../api";
 import withNavbarContainer from "../../components/Navbar";
-import MDX from "@mdx-js/runtime";
-import CodeBlock from "../../components/Blog/CodeBlock";
+import PostDetail from "../../components/Blog/PostDetail";
+import { Col, Row } from "react-bootstrap";
+import Sidebar from "../../components/Blog/Sidebar";
 
-function Post({ post: { title, content } }) {
-  const components = {
-    pre: (props) => <div {...props} />,
-    code: CodeBlock,
-  };
+function Post({ post }) {
   return (
-    <div>
-      <h1>{title}</h1>
-      <MDX components={components}>{content}</MDX>
-    </div>
+    <Row>
+      <Col xs={12} md={8}>
+        <PostDetail post={post} />
+      </Col>
+      <Col xs={12} md={4}>
+        <Sidebar author={post.author} />
+      </Col>
+    </Row>
   );
 }
 

@@ -18,7 +18,6 @@ function index({ isAuthenticated, name, logout, children }) {
       <Navbar
         collapseOnSelect
         expand="lg"
-        // bg="dark"
         variant="dark"
         style={{ background: "#7952B3" }}
       >

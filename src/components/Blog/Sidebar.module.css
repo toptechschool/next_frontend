@@ -1,0 +1,21 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 200px;
+    justify-content: center;
+    row-gap: 1.5rem;
+}
+@media (min-width: 576px) {
+    .wrapper {
+        grid-template-columns: repeat(auto-fit, 200px);
+        column-gap: 3rem;
+    }
+}
+
+.about {
+    text-align: center;
+}
+.img {
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
