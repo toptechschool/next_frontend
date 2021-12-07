@@ -15,12 +15,7 @@ function index({ isAuthenticated, name, logout, children }) {
     : "**";
   return (
     <div className={styles.navbarContainer}>
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        variant="dark"
-        style={{ background: "#7952B3" }}
-      >
+      <Navbar collapseOnSelect expand="lg" variant="dark" className="bg-purple">
         <Container>
           <Link href="/" passHref>
             <Navbar.Brand>ToptechSchool</Navbar.Brand>

@@ -8,6 +8,8 @@
   --blue: #1d3557;
   --celadon-blue: #457b9d;
   --text-size-base: 18px;
+  --purple: #7952B3;
+  --purple-light: #94B3FD;
 }
 
 * {
@@ -37,4 +39,11 @@ a {
   margin-bottom: 1rem;
   height: 17rem;
   border-radius: 1rem;
+}
+
+.bg-purple{
+  background: var(--purple)
+}
+.bg-purple-light{
+  background: var(--purple-light)
 }

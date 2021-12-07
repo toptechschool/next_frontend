@@ -1,19 +1,33 @@
 import React from "react";
 import { getAllPosts, getPostSlugs } from "../../../api";
 import Navbar from "../../../components/Navbar";
-import Link from "next/link";
 import Categories from "../../../components/Blog/Categories";
+import Posts from "../../../components/Blog/Posts";
+import { Pagination } from "react-bootstrap";
+import Link from "next/link";
 
 function BlogPage({ posts, numPages, currentPage, categories }) {
-  return (
-    <div>
-      <Categories categories={categories} />
-      {posts.map((post, index) => (
-        <Link href={`/blog/${post.slug}`} key={index}>
-          <h1>{post.title}</h1>
+  let items = [];
+  for (let number = 1; number <= numPages; number++) {
+    items.push(
+      <Pagination.Item active={number === currentPage}>
+        <Link href={`/blog/page/${number}`} key={number}>
+          <span>{number}</span>
         </Link>
-      ))}
-    </div>
+      </Pagination.Item>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <Categories categories={categories} />
+      <Posts posts={posts} />
+      <div className="d-flex">
+        <div className="mx-auto">
+          <Pagination size="lg">{items}</Pagination>
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
 
@@ -39,7 +53,14 @@ export async function getStaticProps({ params }) {
   const page = parseInt((params && params.page_index) || 1);
   const files = getPostSlugs();
 
-  const posts = getAllPosts(["title", "slug", "category"]);
+  const posts = getAllPosts([
+    "title",
+    "slug",
+    "category",
+    "cover_image",
+    "excerpt",
+    "date",
+  ]);
   const numPages = Math.ceil(files.length / 6);
   const pageIndex = page - 1;
   const orderedPosts = posts.slice(pageIndex * 6, (pageIndex + 1) * 6);

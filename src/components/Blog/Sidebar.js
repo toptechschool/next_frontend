@@ -3,7 +3,7 @@ import Title from "./Title";
 import * as styles from "./Sidebar.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { Badge } from "react-bootstrap";
+import Badge from "../Common/Others/Badge";
 
 export default function Sidebar({ author, categories }) {
   return (
@@ -28,13 +28,9 @@ export default function Sidebar({ author, categories }) {
       <div>
         <Title title="categories" />
         {categories.map((category, idx) => (
-          <span key={idx}>
-            <Badge pill bg="success">
-              <Link href={`/blog/category/${category}`}>
-                <p className="mb-1">{category}</p>
-              </Link>
-            </Badge>{" "}
-          </span>
+          <Link href={`/blog/category/${category}`}>
+            <Badge name={category} />
+          </Link>
         ))}
       </div>
     </div>
