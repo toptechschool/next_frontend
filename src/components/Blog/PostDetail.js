@@ -10,8 +10,10 @@ export default function PostDetail({ post, slug }) {
   };
   return (
     <article>
-      {" "}
-      <h1>{post.title}</h1>
+      <i>
+        <h1>{post.title}</h1>
+      </i>
+      <hr />
       <MDX components={components}>{post.content}</MDX>
       <hr />
       <div className="d-flex justify-content-between">

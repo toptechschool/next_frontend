@@ -1,6 +1,6 @@
 ---
 title: "Django Crash Course"
-date: "May 5, 2021"
+date: "December 5, 2021"
 excerpt: "Django is a very powerful, high level Python framework for building web applications"
 cover_image: "/assets/posts/img1.jpg"
 category: "Python"
@@ -10,57 +10,356 @@ author:
   github: prime7
 ---
 
-Lorem markdownum fine incustoditam unda factura versum occuluere Aeneas, iuvat
-haec praepes [partes epulae](http://cui.com/), in egisse de. Caecisque ter
-manus. Munere in exhalat, ferre sed [habe quaeque saepe](http://ne.org/fretum)
-verba caput ferarum _nubila_? Patriam Cyparisse tamen, **saxum** fide postponere
-pavida ne omnes etiam, atque. Sonuit omina sed sine haerebat illic fit a mora
-in.
+# Table of Contents
 
-1. Serrae enim Etruscam aquis
-2. Et premis et flumine frontem minatur oppressos
-3. Inquam rector Icarus possum vim tumulo propiusque
-4. Vulnus se Latreus
-5. Aptumque bis
+1. [Stacks](#stack)
+2. [Queues](#queue)
 
-## Turpius Aegides membris colat volentes fallere
+An array is a random access data structure, where each element can be accessed directly and in constant time. A typical illustration of random access is a book -
+each page of the book can be open independently of others.
+Random access is critical to many algorithms, for example binary search. In this blog we are going to talk about a
+subcase of sequential data structures, so called limited access data structures.
 
-Ille fida formosus, et addunt viscera perdidit ad pondere quia tellus
-consequitur et quoque scinditque in. Ratis laborum instabat quaedam partem
-Phoebus, manus _partibus poenas_. Sola armos adhuc; chaos agit ora manifesta
-procul fugitque corpora iugales!
+Stacks and Queues(pronounce as Kyoo) are an important Data Structure. Stacks and queues have lots of thing in common.
+They are both linear data structures. The main difference between these two is how elements are inserted and removed from the Stacks or the
+Queues.
 
-    var ethics_font_drive = cycleSystemProgram + deprecatedTransferIp.ide(3) /
-    rgb + nybbleBaseband;
-    permalinkCertificateMacintosh(ergonomicsIsdnDns);
-    boot = bridgeDaemonActive;
+Stacks work as LIFO - Last In First Out
+Queues work as FIFO - First In First Out
 
-## O contra diu
+# Stacks <a name="stack"></a>
 
-Descendit _auras cum misi_ contactu tenax lacus, **quaerensque invitum
-premuntur** patria. Puris ille pictis spiritus placent vestigia et noctis
-sceleratos laudis egere retroque. Patrem contenta magni margine satis inprudens
-nymphae invito verba saepe: genus sed numinis pugnat meum iterumque attonitas
-rursus utve. Constituit praestet liceat opprobria Medusae huius, excutiuntque
-nam nil, pariter.
+A stack is a container of objects that are inserted and removed according to the last-in first-out (LIFO) principle.
+In the pushdown stacks only two operations are allowed: push the item into the stack, and pop the item out of the stack.
+A stack is a limited access data structure - elements can be added and removed from the stack only at the top.
+push adds an item to the top of the stack, pop removes the item from the top.
+A helpful analogy is to think of a stack of books; you can remove only the top book, also you can add a new book on the top.
 
-Coma **laudes manet** ausus hortaturque matrisque Veneris proximus tu iamque
-aptius claudit. Tmolus tetigere iussos animumque quid poplite Hippotaden? Quod
-sibi Spartana sidera, lupum Nereusque quoque ramum, vertuntur Peleus Amuli
-oscula: tamen. Surgere Epidaurius movit crede soceri Euboicam quoque.
+Enough talk, now let's implement stacks. We will implement the following functions to our stack:
 
-Unde stabant, acuta, percussit denique; hoc illic et herbis minimas parvum? Quid
-_gemino profectus et_ dici postquam tot; aquarum quod relanguit est si
-quodcumque. Ossaque protinus, quod somno est, repetit, hoc passu est. Qui devia;
-respice humum vobis oscula, in Lotis nymphae.
+- **Peek** returns the top element
+- **Pop** removes the top element
+- **Push** insert element at the top
+- **IsEmpty** returns true if stack is empty otherwise false
+- **PrintStack** prints the value of the all the items from top to bottom
 
-Dolet certamina velle dexteriore mutatus saepe, tellure ubi unguibus, gestu.
-Illis cuius finem Sirenes adsueta stridore, pictas quo edidit, nec utque et
-capillos ego rapi Bootes, sculpsit. Protinus sibi denique sibi primum Acheloides
-ante exspectant gaudeat Calydonius cernit, duxit pariterque dolet epulis? Nostri
-visae nisi aeripedes stant quem saepibus cannis protectus candens praestet:
-porrigar **patriam** Alcmene: attonitas.
+Let's see the building block of our stack. We will assume each element as a node and create stack with node elements.
+
+The `Node` class consist of the value of the node and next is to hold the next element link. And for the `Stack` Class we need 3 things,
+
+1. top element of the stack
+2. last/bottom element of the stack
+3. element number of the stack
 
 ```javascript
-console.log("Hello World");
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+class Stack {
+  constructor() {
+    this.top = null;
+    this.bottom = null;
+    this.length = 0;
+  }
+}
+```
+
+`Peak` function returns the top element of the List. If the list is empty it will return null otherwise it will return the value of the top element.
+
+```javascript
+class Stack {
+  // ...
+  peek() {
+    return this.top.value;
+  }
+}
+```
+
+`Push` function returns the entire node, after we add an element to the stack. This element will be at the top of the stack. First we initialize the node with the value, then we check if
+stack is empty. If so, top and bottom both will be the newly created node because that's the only node we have. Otherwise, we replace the top node with the newNode and make the previous node as next of new top node.
+
+```javascript
+class Stack {
+  // ...
+  push(value) {
+    const newNode = new Node(value);
+    if (this.length === 0) {
+      this.top = newNode;
+      this.bottom = newNode;
+    } else {
+      const pointer = this.top;
+      this.top = newNode;
+      this.top.next = pointer;
+    }
+    this.length++;
+    return this;
+  }
+}
+```
+
+`printStack` function is just a utility function that prints all the elements of the stack. It starts from the top node, and travarse the next until the last node.
+
+```javascript
+class Stack {
+  // ...
+  printStack() {
+    console.log("==========");
+    let current = this.top;
+    while (current) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
+}
+```
+
+`isEmpty` function returns true of there is no node in the stack otherwise returns false.
+
+```javascript
+class Stack {
+  // ...
+  isEmpty() {
+    if (this.top) {
+      return false;
+    }
+    return true;
+  }
+}
+```
+
+Finally the full code.
+
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Stack {
+  constructor() {
+    this.top = null;
+    this.bottom = null;
+    this.length = 0;
+  }
+
+  peek() {
+    return this.top.value;
+  }
+
+  push(value) {
+    const newNode = new Node(value);
+    if (this.length === 0) {
+      this.top = newNode;
+      this.bottom = newNode;
+    } else {
+      const pointer = this.top;
+      this.top = newNode;
+      this.top.next = pointer;
+    }
+    this.length++;
+    return this;
+  }
+  pop() {
+    if (!this.top) {
+      return null;
+    }
+
+    this.top = this.top.next;
+    this.length--;
+    return this.top.value;
+  }
+  printStack() {
+    console.log("==========");
+    let current = this.top;
+    while (current) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
+
+  isEmpty() {
+    if (this.top) {
+      return false;
+    }
+    return true;
+  }
+}
+
+const stack = new Stack();
+stack.push("Apple");
+stack.push("Banana");
+stack.push("Coconut");
+stack.push("Date");
+
+// console.log(stack.peek());
+// console.log(stack.isEmpty());
+// console.log(stack.pop());
+// console.log(stack.length);
+```
+
+We can also implement stacks with arrays.
+
+```javascript
+class Stack {
+  constructor() {
+    this.array = [];
+  }
+  peek() {
+    return this.array[this.array.length - 1];
+  }
+  push(value) {
+    this.array.push(value);
+    return this;
+  }
+  pop() {
+    this.array.pop();
+    return this;
+  }
+}
+```
+
+# Queues <a name="queue"></a>
+
+A queue is a container of objects (a linear collection) that are inserted and removed according to the first-in first-out (FIFO) principle.
+An excellent example of a queue is a line of students in the food court.
+New additions to a line made to the back of the queue, while removal (or serving) happens in the front.
+In the queue only two operations are allowed enqueue and dequeue.
+Enqueue means to insert an item into the back of the queue, dequeue means removing the front item.
+
+The difference between stacks and queues is in removing.
+In a stack we remove the item the most recently added; in a queue, we remove the item the least recently added.
+
+We will implement the following functions to our queues:
+
+- **Peek** returns the top node
+- **Enqueue** insert node at the end/last
+- **Dequeue** removes node from the top
+
+Similar to stack we will save the values in a Node.
+
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.length = 0;
+  }
+}
+```
+
+As Queues works with the principle of FIFO so the first node will be considered as top.
+
+```javascript
+class Queue {
+  //...
+  peek() {
+    return this.first;
+  }
+}
+```
+
+to `Enqueue` a node, we first check if there are any elements in the queue. If so, we create a new node with the value,
+then exchange new node with the last node. If the queue was empty then both first and last node will be the new node.
+
+```javascript
+class Queue {
+  //...
+  enqueue(value) {
+    const newNode = new Node(value);
+    if (this.length === 0) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    this.length++;
+    return this;
+  }
+}
+```
+
+When `Dequeue` we check if there is any node existant, if not then we just return null. Otherwise, we remove the first node and make the next node of previous first node as first node.
+
+```javascript
+class Queue {
+  //...
+  dequeue() {
+    if (!this.first) {
+      return null;
+    }
+    let newNode = this.first.next;
+    this.first = newNode;
+    this.length--;
+
+    return this;
+  }
+}
+```
+
+Here is the complete code.
+
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.length = 0;
+  }
+  peek() {
+    return this.first;
+  }
+  enqueue(value) {
+    const newNode = new Node(value);
+    if (this.length === 0) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  dequeue() {
+    if (!this.first) {
+      return null;
+    }
+    let newNode = this.first.next;
+    this.first = newNode;
+    this.length--;
+
+    return this;
+  }
+}
+
+const queue = new Queue();
+queue.peek();
+queue.enqueue("Apple");
+queue.enqueue("Banana");
+queue.enqueue("Coconut");
+queue.peek();
+queue.dequeue();
+queue.dequeue();
+queue.dequeue();
+queue.peek();
 ```
