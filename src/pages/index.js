@@ -4,7 +4,7 @@ import withNavbarContainer from "../components/Navbar";
 function Home() {
   return (
     <main>
-      <div className="p-3 p-md-5 m-md-3 text-center bg-light">
+      <div className="p-3 p-md-5 m-md-3 text-center">
         <div className="col-md-5 mx-auto my-5">
           <h1 className="display-4 fw-normal">TechSchool</h1>
           <p className="lead fw-normal">
