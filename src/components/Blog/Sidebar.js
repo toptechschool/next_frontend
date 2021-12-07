@@ -28,7 +28,7 @@ export default function Sidebar({ author, categories }) {
       <div>
         <Title title="categories" />
         {categories.map((category, idx) => (
-          <Link href={`/blog/category/${category}`}>
+          <Link href={`/blog/category/${category}`} key={idx}>
             <Badge name={category} />
           </Link>
         ))}

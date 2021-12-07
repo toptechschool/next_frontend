@@ -14,9 +14,13 @@ export default function PostDetail({ post, slug }) {
       <h1>{post.title}</h1>
       <MDX components={components}>{post.content}</MDX>
       <hr />
-      <Link href={`https://github.com/toptechschool-frontend/_posts/${slug}`}>
-        Edit this page on Github
-      </Link>
+      <div className="d-flex justify-content-between">
+        <Link href="/blog">Back to blog list</Link>
+
+        <Link href={`https://github.com/toptechschool-frontend/_posts/${slug}`}>
+          Edit this page on Github
+        </Link>
+      </div>
     </article>
   );
 }

@@ -10,7 +10,7 @@ function BlogPage({ posts, numPages, currentPage, categories }) {
   let items = [];
   for (let number = 1; number <= numPages; number++) {
     items.push(
-      <Pagination.Item active={number === currentPage}>
+      <Pagination.Item active={number === currentPage} key={number}>
         <Link href={`/blog/page/${number}`} key={number}>
           <span>{number}</span>
         </Link>
@@ -22,9 +22,9 @@ function BlogPage({ posts, numPages, currentPage, categories }) {
     <React.Fragment>
       <Categories categories={categories} />
       <Posts posts={posts} />
-      <div className="d-flex">
+      <div className="d-flex mt-3">
         <div className="mx-auto">
-          <Pagination size="lg">{items}</Pagination>
+          <Pagination>{items}</Pagination>
         </div>
       </div>
     </React.Fragment>

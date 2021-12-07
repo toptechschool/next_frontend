@@ -15,9 +15,7 @@ export default function Posts({ posts }) {
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.excerpt}</Card.Text>
               </Card.Body>
-              <Card.Footer
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
+              <Card.Footer className="d-flex justify-content-between">
                 <p className="text-muted m-0">{post.date}</p>
                 <p className="text-muted m-0">{post.category}</p>
               </Card.Footer>
