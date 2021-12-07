@@ -1,19 +1,13 @@
 import React from "react";
 import { getAllCategories, getAllPosts } from "../../../api";
 import withNavbarContainer from "../../../components/Navbar";
-import Link from "next/link";
+import Posts from "../../../components/Blog/Posts";
 
 function Categories({ categoryName, posts }) {
   return (
     <div>
-      <h1>Category - {categoryName}</h1>
-      <div>
-        {posts.map((post, index) => (
-          <Link href={`/blog/${post.slug}`} key={index}>
-            <h4>{post.title}</h4>
-          </Link>
-        ))}
-      </div>
+      <h3>Category - {categoryName}</h3>
+      <Posts posts={posts} />
     </div>
   );
 }
@@ -32,9 +26,14 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params: { category_name } }) {
-  const posts = getAllPosts(["slug", "title", "category"]).filter(
-    (post) => post.category.toLowerCase() === category_name
-  );
+  const posts = getAllPosts([
+    "title",
+    "slug",
+    "category",
+    "cover_image",
+    "excerpt",
+    "date",
+  ]).filter((post) => post.category.toLowerCase() === category_name);
   return {
     props: { categoryName: category_name, posts },
   };
