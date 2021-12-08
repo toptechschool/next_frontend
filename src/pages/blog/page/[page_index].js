@@ -10,11 +10,11 @@ function BlogPage({ posts, numPages, currentPage, categories }) {
   let items = [];
   for (let number = 1; number <= numPages; number++) {
     items.push(
-      <Pagination.Item active={number === currentPage} key={number}>
-        <Link passHref href={`/blog/page/${number}`} key={number}>
+      <Link passHref href={`/blog/page/${number}`} key={number}>
+        <Pagination.Item active={number === currentPage} key={number}>
           <span>{number}</span>
-        </Link>
-      </Pagination.Item>
+        </Pagination.Item>
+      </Link>
     );
   }
 
