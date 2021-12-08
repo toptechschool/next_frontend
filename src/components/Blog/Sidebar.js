@@ -20,7 +20,11 @@ export default function Sidebar({ author, categories }) {
             className={styles.img}
           />
           <span />
-          <a href={`https://github.com/${author.github}`} target="_blank">
+          <a
+            href={`https://github.com/${author.github}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             <p>{author.name}</p>
           </a>
         </div>
@@ -28,7 +32,7 @@ export default function Sidebar({ author, categories }) {
       <div>
         <Title title="categories" />
         {categories.map((category, idx) => (
-          <Link href={`/blog/category/${category}`} key={idx}>
+          <Link href={`/blog/category/${category}`} key={idx} passHref>
             <Badge name={category} />
           </Link>
         ))}

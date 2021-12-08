@@ -2,7 +2,7 @@ import React from "react";
 import NavbarContainer from "./Navbar";
 
 export default function withNavbarContainer(WrappedComponent) {
-  return class extends React.Component {
+  return class Wrapper extends React.Component {
     render() {
       return (
         <NavbarContainer>

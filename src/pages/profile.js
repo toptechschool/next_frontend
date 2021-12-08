@@ -19,7 +19,12 @@ function profile(props) {
   }
   return (
     <>
-      <Image src={profile_pic} roundedCircle className={styles.avatar} />
+      <Image
+        src={profile_pic}
+        roundedCircle
+        className={styles.avatar}
+        alt="Profile Picture"
+      />
       <Formik
         validationSchema={schema}
         onSubmit={(e) => props.updateProfile(e)}

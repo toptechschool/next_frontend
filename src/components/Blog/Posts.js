@@ -9,9 +9,14 @@ export default function Posts({ posts }) {
     <Row className="mt-3">
       {posts.map((post, index) => (
         <Col xs={12} md={6} lg={4} key={post.slug} className={styles.article}>
-          <Link href={`/blog/${post.slug}`} key={index}>
+          <Link href={`/blog/${post.slug}`} key={index} passHref>
             <Card>
-              <Image src={post.cover_image} height={250} width={700} />
+              <Image
+                src={post.cover_image}
+                height={250}
+                width={700}
+                alt="Banner Image"
+              />
               <Card.Body>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text bsPrefix="small">{post.excerpt}</Card.Text>

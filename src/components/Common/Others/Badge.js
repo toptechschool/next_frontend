@@ -12,4 +12,5 @@ const Badge = React.forwardRef(({ onClick, name }, ref) => {
   );
 });
 
+Badge.displayName = "Badge";
 export default Badge;
