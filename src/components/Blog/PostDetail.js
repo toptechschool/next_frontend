@@ -22,7 +22,7 @@ export default function PostDetail({ post, slug }) {
         </Link>
 
         <Link
-          href={`https://github.com/toptechschool-frontend/_posts/${slug}`}
+          href={`https://github.com/toptechschool/next_frontend/tree/dev/_posts/${slug}`}
           passHref
         >
           Edit this page on Github
