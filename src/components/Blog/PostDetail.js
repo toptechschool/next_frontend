@@ -22,10 +22,9 @@ export default function PostDetail({ post, slug }) {
         </Link>
 
         <Link
-          href={`https://github.com/toptechschool/next_frontend/tree/dev/_posts/${slug}`}
-          passHref
+          href={`https://github.com/toptechschool/next_frontend/tree/dev/_posts/${slug}.mdx`}
         >
-          Edit this page on Github
+          <a target="_blank">Edit this page on Github</a>
         </Link>
       </div>
     </article>
