@@ -5,6 +5,7 @@ import Categories from "../../../components/Blog/Categories";
 import Posts from "../../../components/Blog/Posts";
 import { Pagination } from "react-bootstrap";
 import Link from "next/link";
+import SEO from "../../../components/Common/Others/SEO";
 
 function BlogPage({ posts, numPages, currentPage, categories }) {
   let items = [];
@@ -20,6 +21,7 @@ function BlogPage({ posts, numPages, currentPage, categories }) {
 
   return (
     <React.Fragment>
+      <SEO title="Blog" />
       <Categories categories={categories} />
       <Posts posts={posts} />
       <div className="d-flex mt-3">

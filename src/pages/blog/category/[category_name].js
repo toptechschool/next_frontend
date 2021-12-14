@@ -2,10 +2,12 @@ import React from "react";
 import { getAllCategories, getAllPosts } from "../../../api";
 import withNavbarContainer from "../../../components/Navbar";
 import Posts from "../../../components/Blog/Posts";
+import SEO from "../../../components/Common/Others/SEO";
 
 function Categories({ categoryName, posts }) {
   return (
     <div>
+      <SEO title={`Posts on - ${categoryName}`} />
       <h3>Category - {categoryName}</h3>
       <Posts posts={posts} />
     </div>
