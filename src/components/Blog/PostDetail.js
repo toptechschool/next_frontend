@@ -2,15 +2,24 @@ import React from "react";
 import MDX from "@mdx-js/runtime";
 import CodeBlock from "./CodeBlock";
 import Link from "next/link";
-import * as styles from "./Posts.module.css";
+import Image from "next/image";
 
 export default function PostDetail({ post, slug }) {
   const components = {
     pre: (props) => <div {...props} />,
     code: CodeBlock,
+    Image: (props) => (
+      <Image
+        {...props}
+        width="100%"
+        height="100%"
+        layout="responsive"
+        objectFit="cover"
+      />
+    ),
   };
   return (
-    <article className={styles.container}>
+    <article>
       <i>
         <h1>{post.title}</h1>
       </i>
