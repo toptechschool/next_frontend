@@ -2,6 +2,7 @@ import React from "react";
 import MDX from "@mdx-js/runtime";
 import CodeBlock from "./CodeBlock";
 import Link from "next/link";
+import * as styles from "./Posts.module.css";
 
 export default function PostDetail({ post, slug }) {
   const components = {
@@ -9,7 +10,7 @@ export default function PostDetail({ post, slug }) {
     code: CodeBlock,
   };
   return (
-    <article>
+    <article className={styles.container}>
       <i>
         <h1>{post.title}</h1>
       </i>

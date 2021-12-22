@@ -7,3 +7,6 @@
     transform: scale(1.05);
 }
 
+.container img{
+    width: 100%;
+}
