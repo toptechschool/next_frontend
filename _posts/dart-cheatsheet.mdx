@@ -1,48 +1,64 @@
+---
+title: "Dart cheatsheet"
+date: "January 23, 2022"
+excerpt: "dart cheatsheet 001"
+cover_image: "/assets/posts/img1.jpg"
+category: "cheetsheet"
+author:
+  name: Ahnaf Ahmed Shoumik
+  avatar: /assets/authors/ahnaf.png
+  github: ahnaf22
+---
+
 ## What is Dart ?
+
 **Dart** is a high-level platform-independent programming language developed and maintained by Google on a regular basis which was emerged in 2011 and the stable version was released in 2017. It is vastly used in the popular **Flutter** framework. Dart is open-source and used to develop mobile apps,web apps,desktop apps, internet of things (IoT) and supports advanced concepts like interfaces, mixins, refield generics etc.
 
-Though this is a cheatsheet of dart, with some previous knowledge of any programming language like c, java, javascript or any high-level language you will find much similarities with its syntax and functionalities that might make you feel that you already know Dart! So why not jump in and follow along the tutorial to learn a programming language which is robust and  productive.
+Though this is a cheatsheet of dart, with some previous knowledge of any programming language like c, java, javascript or any high-level language you will find much similarities with its syntax and functionalities that might make you feel that you already know Dart! So why not jump in and follow along the tutorial to learn a programming language which is robust and productive.
 
-> You can use [Dartpad](https://dartpad.dev) - which is an online tool to run the codes and play around ( Write codes inside main function ) 
+> You can use [Dartpad](https://dartpad.dev) - which is an online tool to run the codes and play around ( Write codes inside main function )
 
-> Note: All The data types in  Dart are Objects, Default value is NULL
+> Note: All The data types in Dart are Objects, Default value is NULL
 
 ## Variables
+
 Data types: (int,double,String,Bool,List,Map,Function etc)
 
-> Declaration: 
-		
-   
+> Declaration:
+
     int  _income = 10000; // _ used for private variables
     Var income = 10000; // (inferred as integers automatically)
-    
+
 If you dont know the variable type you can just use 'var' to declare a variable
-    
-> Constants: 
-    
+
+> Constants:
+
     class MyHouse {
-        // final constants are initialized when an object of this class is accessed 
+        // final constants are initialized when an object of this class is accessed
         final  myAddress = "219/A Dhaka, bangladesh";
-        
+
         // instance variable can be final but can’t be constant, only static fields can be declared as constants
         static const myFloor   = 6; // Implicitly final
     }
 
-##  String interpolation
+## String interpolation
+
 We can easily interpolate strings or expression inside a String like this:
-> Print variable: 
-  
+
+> Print variable:
+
     String isDead =  "Nope";
     print("Are all hopes dead? \nAns: $isDead");
-    
+
 > Print Expression:
-    
+
     int massInEarth = 10;
     print("Weight in earth: ${9.8*massInEarth}N\n"); // this will calculate the expression inside ${} and print it
 
 ## Conditional Statements
+
 > If else ladder:
-    
+
     var bmi = 10;
     if(bmi>30){
          print("You are fat:need some exercises");
@@ -52,18 +68,18 @@ We can easily interpolate strings or expression inside a String like this:
          print("Underweight:please gain some weight");
     }
 
-> Ternary: 
-      
+> Ternary:
+
     var given_number = 19;
     given_number % 2 == 1 ? print('$given_number is odd') : print('$given_number is even');
 
-> Null Check:     
-   
+> Null Check:
+
     var  value_to_show = "Melon Tusk";
     var  userName = value_to_show ??  "Guest User" ; // checks for a null value using ?? operator, if left operand is null returns the right one
     print(userName);
 
-> Switch Case:   
+> Switch Case:
 
     //Only Works For int and String
     var salary = 50000;
@@ -77,9 +93,3 @@ We can easily interpolate strings or expression inside a String like this:
          default :
            print('No Data available');
     }
-
-    
-    
-    
-
-
