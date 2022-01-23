@@ -79,6 +79,7 @@ export const login = (email, password) => (dispatch) => {
     .catch((err) => {
       dispatch({ type: actionTypes.LOGIN_FAIL });
       toast.error(err.response.data.error[0]);
+      console.log(err.response.data.error[0]);
     });
 };
 
